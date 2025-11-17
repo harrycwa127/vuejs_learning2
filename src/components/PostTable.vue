@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="post in posts" :key="post.pId">
+            <tr v-for="post in posts" :key="post.pId" @click="$emit('select', post)">
                 <td>{{ post.pSchool }}</td>
                 <td>{{ post.pDep }}</td>
                 <td>{{ post.pYear }}</td>
