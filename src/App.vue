@@ -10,11 +10,13 @@ import { ref, computed } from 'vue'
 const keyword = ref('')
 const currentPage = ref(1)
 const itemsPerPage = 10
+const allPosts = ref([...posts])
+
 
 const filteredPosts = computed(() => {
 	currentPage.value = 1
-	if (!keyword.value) return posts
-	return posts.filter((p) => {
+	if (!keyword.value) return allPosts.value
+	return allPosts.value.filter((p) => {
 		return (
 			p.pSchool?.includes(keyword.value) ||
 			p.pDep?.includes(keyword.value) ||
@@ -47,7 +49,6 @@ const paginatedPosts = computed(() => {
 })
 
 const showShareModal = ref(false)
-const allPosts = ref([...posts])
 
 function openShareModal() {
 	showShareModal.value = true

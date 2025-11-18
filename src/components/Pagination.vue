@@ -63,7 +63,7 @@ const visiblePages = computed(() => {
 })
 </script>
 
-<style>
+<style scoped>
 .pagination-controls {
 	display: flex;
 	justify-content: center;

@@ -33,7 +33,7 @@
     })
 </script>
 
-<style>
+<style scoped>
 .post-table {
     padding: 10px;
     width: 80vw;
