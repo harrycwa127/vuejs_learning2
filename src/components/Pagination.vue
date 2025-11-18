@@ -69,6 +69,7 @@ const visiblePages = computed(() => {
 	justify-content: center;
 	align-items: center;
 	margin-top: 20px;
+	margin-bottom: 20px;
 	gap: 10px;
 
 	& button {
