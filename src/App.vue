@@ -4,6 +4,7 @@ import posts from './data/data.json'
 import PostTable from './components/PostTable.vue'
 import DetailModal from './components/DetailModal.vue'
 import Pagination from './components/Pagination.vue'
+import NewPostModal from './components/NewPostModal.vue'
 import { ref, computed } from 'vue'
 
 const keyword = ref('')
@@ -44,10 +45,24 @@ const paginatedPosts = computed(() => {
 	const end = start + itemsPerPage
 	return filteredPosts.value.slice(start, end)
 })
+
+const showShareModal = ref(false)
+const allPosts = ref([...posts])
+
+function openShareModal() {
+	showShareModal.value = true
+}
+
+function handleNewExperience(newExperience) {
+	allPosts.value.unshift(newExperience)
+	showShareModal.value = false
+	keyword.value = ''
+	currentPage.value = 1
+}
 </script>
 
 <template>
-	<Header />
+	<Header @share="openShareModal" />
 	<main>
 		<h2>經驗分享</h2>
 		<input v-model="keyword" type="search" placeholder="請輸入原學校、系所或欲推甄校系" class="search-box" />
@@ -61,6 +76,7 @@ const paginatedPosts = computed(() => {
 		</div>
 		<p v-else>查無相關結果 QQ</p>
 		<DetailModal :visible="showModal" :post="selectedPost" @close="showModal = false" />
+		<NewPostModal :visible="showShareModal" @close="showShareModal = false" @submit="handleNewExperience" />
 	</main>
 </template>
 
