@@ -7,7 +7,7 @@
                 <th>年度</th>
                 <th>日期</th>
                 <th>Score</th>
-                <th>結果</th>
+                <th style="width: 50%;">結果</th>
                 <th>來源</th>
             </tr>
         </thead>
@@ -32,3 +32,22 @@
         posts: { type: Array, default: () => [] }
     })
 </script>
+
+<style>
+.post-table {
+    padding: 10px;
+    width: 80vw;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+    & thead tr {
+        border-bottom: 0.5px solid gray;
+        background-color: #f0f0f0;
+        height: 2.5rem;
+    }
+
+    & tr {
+        border-bottom: 0.5px solid gray;
+    }
+}
+</style>

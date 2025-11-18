@@ -11,6 +11,7 @@ const currentPage = ref(1)
 const itemsPerPage = 10
 
 const filteredPosts = computed(() => {
+	currentPage.value = 1
 	if (!keyword.value) return posts
 	return posts.filter((p) => {
 		return (
@@ -62,3 +63,20 @@ const paginatedPosts = computed(() => {
 		<DetailModal :visible="showModal" :post="selectedPost" @close="showModal = false" />
 	</main>
 </template>
+
+<style>
+input[type='search'] {
+	padding: 8px;
+	width: 100%;
+	max-width: 400px;
+	margin-bottom: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	font-size: 16px;
+}
+
+.table-container {
+	display: flex;
+	justify-content: center;
+}
+</style>

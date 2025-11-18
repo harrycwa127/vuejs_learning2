@@ -62,3 +62,24 @@ const visiblePages = computed(() => {
 	return pages
 })
 </script>
+
+<style>
+.pagination-controls {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	gap: 10px;
+
+	& button {
+		background: #1a3d64;
+		border: none;
+		color: white;
+		font-size: 1rem;
+		padding: 0.5rem 1rem;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background 0.2s;
+	}
+}
+</style>
