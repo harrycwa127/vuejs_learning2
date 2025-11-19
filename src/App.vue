@@ -67,6 +67,8 @@ function handleNewExperience(newExperience) {
 	showShareModal.value = false
 	keyword.value = ''
 	currentPage.value = 1
+
+	showSuccess();
 }
 </script>
 
@@ -90,7 +92,7 @@ function handleNewExperience(newExperience) {
 		</div>
 		<p v-else>查無相關結果 QQ</p>
 		<DetailModal :visible="showModal" :post="selectedPost" @close="showModal = false" />
-		<NewPostModal :visible="showShareModal" @close="showShareModal = false" @submit="handleNewExperience" />
+		<NewPostModal :visible="showShareModal" @close="showShareModal = false" @submit="handleNewExperience" @submitFail="showError"/>
 	</main>
 
 	<Toast ref="toastRef" />

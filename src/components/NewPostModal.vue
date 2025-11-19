@@ -88,7 +88,7 @@ const props = defineProps({
     visible: { type: Boolean, default: false }
 })
 
-const emit = defineEmits(['close', 'submit'])
+const emit = defineEmits(['close', 'submit', 'submitFail'])
 
 const isSubmitting = ref(false)
 
@@ -185,14 +185,15 @@ ${formData.pResult1}`,
 
         emit('submit', newExperience)
 
-        alert('感謝你的分享！你的經驗已成功加入資料庫 ✨')
+        // alert('感謝你的分享！你的經驗已成功加入資料庫 ✨')
 
         close()
         clearDraft()
 
     } catch (error) {
         console.error('提交失敗:', error)
-        alert('提交失敗，請稍後再試')
+        // alert('提交失敗，請稍後再試')
+        emit('submitFail')
     } finally {
         isSubmitting.value = false
     }
