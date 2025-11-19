@@ -1,6 +1,6 @@
 # vuejs_learning
 
-this Vue project built using Vite, including routing, Pinia and Composition APIs.
+this Vue project built using Vite, including Pinia and Composition APIs.
 
 ## Project setup
 
