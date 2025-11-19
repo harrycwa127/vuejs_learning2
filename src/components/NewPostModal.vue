@@ -82,7 +82,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch, onMounted } from 'vue'
 
 const props = defineProps({
     visible: { type: Boolean, default: false }
@@ -102,6 +102,39 @@ const formData = reactive({
     pResult1: '',
     pURL: ''
 })
+
+const DRAFT_KEY = 'shareFormDraft';
+
+onMounted(() => {
+    const saved = localStorage.getItem(DRAFT_KEY)
+    if (saved) Object.assign(formData, JSON.parse(saved))
+})
+
+// 自動儲存
+let timer;
+
+watch(
+    formData,
+    (newVal) => {
+        // 每次輸入時清除上一個計時器
+        clearTimeout(timer)
+
+        // 重新設定新的計時器
+        timer = setTimeout(() => {
+            localStorage.setItem('shareFormDraft', JSON.stringify(newVal))
+            console.log('草稿已自動儲存')
+        }, 500)
+
+        localStorage.getItem(DRAFT_KEY)
+    },
+    { deep: true }
+)
+
+// 清除草稿
+function clearDraft() {
+    localStorage.removeItem(DRAFT_KEY)
+}
+
 
 function close() {
     emit('close')
@@ -155,6 +188,8 @@ ${formData.pResult1}`,
         alert('感謝你的分享！你的經驗已成功加入資料庫 ✨')
 
         close()
+        clearDraft()
+
     } catch (error) {
         console.error('提交失敗:', error)
         alert('提交失敗，請稍後再試')
